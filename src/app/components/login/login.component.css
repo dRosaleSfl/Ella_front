@@ -1,8 +1,8 @@
 /*@import url('https://fonts.googleapis.com/css?family=Numans');*/
 
-html,body{ 
+html,body{
     /*http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg*/   
-    background-image: url("./../../../assets/imgs/fondo.jpg");
+    background-image: url("../../../assets/imgs/mujer.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;

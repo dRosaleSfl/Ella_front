@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule  } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChangesService } from 'src/app/services/changes.service';
+import { ChangesService } from 'src/app/services/changes/changes.service';
 
 @Component({
   selector: 'app-login',

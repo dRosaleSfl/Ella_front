@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ChangesService } from 'src/app/services/changes.service';
+import { ChangesService } from 'src/app/services/changes/changes.service';
 
 @Component({
   selector: 'app-redirect',

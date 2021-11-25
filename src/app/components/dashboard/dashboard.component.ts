@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  select
+
+  constructor() {
+    this.select = 1
+   }
 
   ngOnInit(): void {
+  }
+
+  setSelect(a: any) {
+    this.select = a
   }
 
 }

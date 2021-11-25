@@ -1,0 +1,30 @@
+
+		<div class="wrapper-calendar">
+			<div class="header-calendar">
+				<div>
+					<button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+				</div>
+					<h1>{{this.month[this.dateSelect.getMonth()]}}, {{this.dateSelect.getFullYear()}}</h1>
+				<div>
+					<button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+				</div>
+			</div>
+
+			<ol>
+				<li *ngFor="let day of week" class="day-name">
+					{{day | slice:0:3}}
+				</li>
+
+		        <li [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" *ngFor="let day of monthSelect;let first = first">
+					<span *ngIf="periodo(day?.value)" class="day-number true">{{day?.value}}</span> 
+					<span *ngIf="!periodo(day?.value)" class="day-number false">{{day?.value}}</span> 
+				</li>
+			</ol>
+			<hr>
+
+    		<p class="info">
+        		Periodos menstruales registrados: {{ this.datesPeriod.length}} <br>
+        		Duracion promedio de periodo menstrual: {{ avg }} <br>
+				Dias promedio entre periodo menstrual: {{ avg2 }} <br>
+    		</p>
+		</div>

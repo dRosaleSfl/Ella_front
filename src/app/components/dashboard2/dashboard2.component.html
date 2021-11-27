@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+ 
+</head>
+
+
+<body class=""> 
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="../../../assets/imgs/ELLAA.png" alt="" width="100">
+        
+       
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item active">
+                <div class="typography-line">
+               
+                    <h1 >
+                BIENVENIDO:  DR.{{nombre}}</h1></div>
+            </li>  <li class="nav-item active">
+                
+            </li>
+           
+          </ul>
+          
+          <button class="btn btn-outline-success my-2 my-sm-0" >Log Out</button>
+          
+        </div>
+      </nav>
+       <!--Navbar-->
+      
+      <br>
+      <br>
+      <br>
+      <br>
+   
+
+      <div class="row">
+        <div class="col"><h1>Pacientes</h1></div>
+        <div class="col">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> 
+        </div>
+        
+      </div>
+
+
+       <div class="container ">
+
+        <div >
+            <table class="table tablesorter " id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>
+                    Nombre Completo:
+                  </th>
+                  <th>
+                    Edad:
+                  </th>
+                  <th>
+                    Detalles:
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td>
+                    {{pacientes.nombre}}
+                  </td>
+                  <td>
+                    {{pacientes.edad}}
+                  </td>
+                  <td>
+    
+                    <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Ver Expediente
+                      </button>
+                    
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+       </div>
+     
+
+        
+        
+          
+   
+
+
+
+
+      
+</body>
+  <!-- Modal principal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Expediente
+                </div>
+              </div>
+              <hr>
+                <br>
+                {{pacientes.nombre}}
+              <br>
+              <br>
+             
+            
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalME">
+                Medicamentos
+              </button> <br>
+              <br>
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalSI">
+                Sintomas
+              </button><br>
+              <br>
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalQ">
+                Quiste
+              </button><br>
+              <br>
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAN">
+                Estudios de sangre
+              </button><br>
+              <br>
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAM">
+                Antecedentes
+              </button><br>
+              <br>
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalMA">
+                Metodos Anticonceptivos
+              </button><br>
+              <br>
+              
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalCM">
+                Ciclo
+              </button> <br>
+              <br>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Medicamentos -->
+  <div class="modal fade" id="exampleModalME" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                   Medicamentos de: {{pacientes.nombre}}
+                </div>
+              </div>
+              <hr><br>
+            
+                    medi
+
+
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Sintomas -->
+  <div class="modal fade" id="exampleModalSI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+              <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Sintomas de:{{pacientes.nombre}} 
+                </div>
+              </div>
+              <hr><br>
+
+   sintomas
+
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Ciclos -->
+<div class="modal fade" id="exampleModalCM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Ciclos Menstruales de:{{pacientes.nombre}} 
+                </div>
+              </div>
+              <hr><br>
+            
+  ciclos
+
+
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Quiste -->
+<div class="modal fade" id="exampleModalQ" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                        Quiste de: {{pacientes.nombre}}
+                </div>
+              </div>
+              <hr><br>
+quiste
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Estdios de sangre -->
+<div class="modal fade" id="exampleModalAN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Estudios de Sangre de: {{pacientes.nombre}}
+                </div>
+              </div>
+              <hr><br>
+
+
+ sangre
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Metodos Antconceptivos -->
+  <div class="modal fade" id="exampleModalMA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Metodos Anticonceptivos de : {{pacientes}}
+                </div>
+              </div>
+              <hr><br>
+
+antico
+
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Antecedentes -->
+  <div class="modal fade" id="exampleModalAM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Antedecentes Medicos de:  {{pacientes}}
+                </div>
+              </div>
+              <hr><br>
+
+ antecedentes
+
+        </div>
+        <div class="modal-footer">
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Volver
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</html>

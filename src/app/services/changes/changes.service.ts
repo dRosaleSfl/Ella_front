@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 
 @Injectable({
@@ -16,4 +17,6 @@ export class ChangesService {
     console.log("logged changed into " + this.logged)
     this.change.emit(this.logged)
   }
+  //----- usuarios todos 
+
 }

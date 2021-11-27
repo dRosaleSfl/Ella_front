@@ -19,8 +19,9 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+ 
   }
-
+ 
   login() { // this should go call for the db to get the user that matches with the user and password given
     //if it returns a registered user
     this.changes.sesionCheck()

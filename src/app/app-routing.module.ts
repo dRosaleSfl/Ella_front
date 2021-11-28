@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
       ]
   },
   {path: 'calendar', component: CalendarComponent},
-  {path: 'perfil', component: PerfilComponent}
+  {path: 'perfil', component: PerfilComponent},
+  {path: 'registro', component: RegisterComponent}
 ];
 
 @NgModule({

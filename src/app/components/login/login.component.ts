@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule  } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { ChangesService } from 'src/app/services/changes/changes.service';
 
@@ -10,6 +10,7 @@ import { ChangesService } from 'src/app/services/changes/changes.service';
 })
 export class LoginComponent implements OnInit {
   sesion
+  newUser=false
 
   constructor(private formBuilder: FormBuilder, private router: Router, private changes: ChangesService) {
     this.sesion = this.formBuilder.group({
@@ -26,6 +27,11 @@ export class LoginComponent implements OnInit {
     //if it returns a registered user
     this.changes.sesionCheck()
     sessionStorage.setItem("UserID", "5") // instead of 5 it should be the _objectID of the user returned, with this i should be able to call the info of the user and get it in every page as it is on sesionstorage
+  }
+
+  register() {
+    console.log("Register")
+    this.newUser=true
   }
 
 }

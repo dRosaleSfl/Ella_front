@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>ELLA - Registro</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="registroinfo">
+                    <h3>Informacion Personal</h3>
+                    <hr>
+                    <div class="row"> 
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Nombre de pila" formControlName="nombre">	
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Primer Apellido" formControlName="apepat">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Segundo Apellido" formControlName="apemat">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                           <p>Edad:</p>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Edad" formControlName="edad">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Informacion Usuario</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Nombre de usuario" formControlName="usuario">	
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="password" class="form-control" placeholder="Ingrese su contraseña" formControlName="contraseña">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="password" class="form-control" placeholder="Repita su contraseña" formControlName="contraseña2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Informacion Adicional</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Colonia" formControlName="colonia">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Numero" formControlName="numero">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Numero Interno*" formControlName="numero_interno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Codigo Postal" formControlName="cp">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Municipio" formControlName="municipio">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Ciudad" formControlName="ciudad">
+                            </div>
+                        </div>
+                    </div> 
+                    <h3>Informacion de Contacto</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="449" formControlName="contacto1"> <h1> -</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="123" formControlName="contacto2"> <h1> -</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="4567" formControlName="contacto3"> <h1>.</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p><small>* Si su direccion no tiene numero interno, favor de dejar campo vacio</small></p>
+                    <p *ngIf="!usrvld">Contraseñas no iguales</p>
+
+                    <div class="form-group button-reg">
+                        <a class="btn float-right login_btn centrado" (click)="registro()">Registro</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

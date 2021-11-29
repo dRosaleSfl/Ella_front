@@ -23,7 +23,10 @@ deletusuario(_idpaciente:String){
 }
 //------- crea un nuevo usuario
 Nuevousuario(data:any){
-  return this.httpClient.post(`http://localhost:3001/insert`,data);
+  console.log("Llamado en el servicio data: ")
+  console.log(data)
+  this.httpClient.post(`http://localhost:3001/insert`,data)
+  console.log("Ya deberia de estar chtm")
 }
 //----- Edita la informacion del usuario -(no edita domicilio ni contacto)
 Editausuario(data:any,_idpaciente:String){

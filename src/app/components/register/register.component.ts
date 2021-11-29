@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registrofinal = {}
   usrvld = true
 
-  constructor(private formBuilder: FormBuilder, private servicios: ServicioService) {
+  constructor(private formBuilder: FormBuilder, public servicios: ServicioService) {
       this.registroinfo = this.formBuilder.group({
         nombre: '',
         apepat: '',
@@ -68,7 +68,9 @@ export class RegisterComponent implements OnInit {
         tipo: 0 // falta validar que se pueda poner varios tipos
         }
         console.log(this.registrofinal)
-        this.servicios.Nuevousuario(this.registrofinal)
+        this.servicios.Nuevousuario(this.registrofinal).subscribe(res =>{
+          console.log(res)
+        })
     }
     else {
       //marcar un error, tal vez podria ser numero y asi pongo un error para contraseña desigual (1) y otro para usuario existente (2)

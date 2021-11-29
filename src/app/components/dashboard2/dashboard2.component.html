@@ -74,12 +74,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr >
+                <tr *ngFor="let paciente of pacientes">
                   <td>
-                    {{pacientes.nombre}}
+                    {{paciente._idpaciente.nombre}}
                   </td>
                   <td>
-                    {{pacientes.edad}}
+                    {{paciente._idpaciente.edad}}
                   </td>
                   <td>
     

@@ -45,58 +45,105 @@
    
 
       <div class="row">
-        <div class="col"><h1>Pacientes</h1></div>
+        <div class="col"><h1><i class="fas fa-file-medical-alt"></i>Pacientes</h1></div>
         <div class="col">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form> 
+            
         </div>
         
       </div>
 
 
-       <div class="container ">
+
+
+      <div class="card-body">
 
         <div >
-            <table class="table tablesorter " id="">
+            <table class="table tablesorter  table-striped"  id="">
               <thead class=" text-primary">
                 <tr>
-                  <th>
+                  <th  align="center">
                     Nombre Completo:
                   </th>
-                  <th>
-                    Edad:
+    
+                  <th align="center">
+                    Peso:
+                  </th >
+                  <th align="center">
+                    Altura:
+                  </th >
+                  <th align="center">
+                    Tipo de sangre:
                   </th>
-                  <th>
-                    Detalles:
+                  <th align="center">
+                    Alergias:
+                  </th>
+                  <th align="center">
+                    
+                    <button   class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalNEX">
+                      Nuevo Paciente<i class="fas fa-plus"></i>
+                    </button>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let paciente of pacientes">
-                  <td>
-                    {{paciente._idpaciente.nombre}}
-                  </td>
-                  <td>
-                    {{paciente._idpaciente.edad}}
-                  </td>
-                  <td>
-    
-                    <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Ver Expediente
-                      </button>
+                  <td   align="center">
+                   {{paciente._idpaciente.nombre}} {{paciente._idpaciente.apepat}} {{paciente._idpaciente.apemat}}
                     
                   </td>
+                  
+                  <td align="center">
+                    {{paciente.peso}}
+                  </td >
+                  <td align="center">
+                    {{paciente.Altura}}
+                  </td>
+                  <td align="center">
+                    {{paciente.tiposangre}}
+                  </td>
+                  <td>
+                    <h4><i class="far fa-plus-square" (click)="sintomaex(paciente)" data-bs-toggle="modal" data-bs-target="#exampleModalNSP">Add</i></h4>
+                <div *ngFor="let alergia of paciente.alergias">    
+                   Causa: {{alergia.causa}}
+                   <br>
+                  
+                   Complicacion:{{alergia.complicacion}}
+                   <br>
+                   
+                  Sintomas:{{alergia.sintomas}}
+                  <br>
+                  <hr>
+                </div> 
+                <br>
+                 
+                
+                
+                  </td>
+                  <td align="center"> <h4 >Eliminar Paciente<i (click)="eliminarex(paciente)"  class="fas fa-user-minus"></i></h4> </td>
+                  <td align="center">
+    
+                    <button (click)="verex(paciente)"  class="btn btn-outline-success  my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Ver Expediente <i class="fas fa-file-medical-alt"></i>
+                      </button>
+                      
+                  </td>
+                  <td>
+                    <button  (click)="verper(paciente)" class="btn btn-outline-success my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalIP">
+                      Informacion Personal <i class="fas fa-address-card"></i>
+                    </button>
+                  </td>
+                 
                 </tr>
                 
               </tbody>
             </table>
           </div>
+        </div>
           <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
-       </div>
+
+
      
 
         
@@ -109,9 +156,16 @@
 
       
 </body>
+
+
+
+
+
+
+
   <!-- Modal principal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-body">
             
@@ -119,43 +173,37 @@
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Expediente
+                    Expediente de: {{nombreP}}
                 </div>
               </div>
               <hr>
-                <br>
-                {{pacientes.nombre}}
-              <br>
-              <br>
-             
-            
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalME">
-                Medicamentos
+              <button (click)="verME()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalME">
+                <i class="fas fa-pills"></i> Medicamentos
               </button> <br>
               <br>
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalSI">
-                Sintomas
+              <button (click)="verSI()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalSI">
+                <i class="fas fa-heartbeat"></i>  Sintomas
               </button><br>
               <br>
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalQ">
-                Quiste
+              <button  (click)="verQ()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalQ">
+                <i class="fas fa-user-nurse"></i> Quiste
               </button><br>
               <br>
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAN">
-                Estudios de sangre
+              <button  (click)="verAN()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAN">
+                <i class="fas fa-vial"></i>  Estudios de sangre  
               </button><br>
               <br>
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAM">
-                Antecedentes
+              <button (click)="verAM()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAM">
+                <i class="fas fa-file-medical"></i>  Antecedentes<i class="fas fa-file-medical"></i>
               </button><br>
               <br>
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalMA">
-                Metodos Anticonceptivos
+              <button (click)="verMA()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalMA">
+                <i class="fas fa-tablets"></i>  Metodos Anticonceptivos
               </button><br>
               <br>
               
-              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalCM">
-                Ciclo
+              <button (click)="verCM()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalCM">
+                <i class="far fa-calendar-alt"></i> Ciclo<i class="far fa-calendar-alt"></i>
               </button> <br>
               <br>
 
@@ -173,7 +221,7 @@
 
   <!-- Modal Medicamentos -->
   <div class="modal fade" id="exampleModalME" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-fullscreen-xxl-down">
       <div class="modal-content">
       
         <div class="modal-body">
@@ -181,12 +229,92 @@
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                   Medicamentos de: {{pacientes.nombre}}
+                  <i class="fas fa-pills"></i>Medicamentos de: {{nombreP}}
                 </div>
               </div>
               <hr><br>
-            
-                    medi
+              <input type="text" class="form-control" #filtroo placeholder="Buscar&hellip;" (keyup)="applyFilter2(filtroo.value)">
+              
+                    <table class="table table-success table-striped">
+
+                      <thead>
+                        <tr>
+                          <th >
+                            <font color="black">Nombre del Medicamento</font>
+                              
+                          </th>
+                          <th >
+                            <font color="black">Dosis</font>
+                              
+                          </th>
+                          <th >
+                            <font color="black">Fecha Inicio</font>
+                              
+                          </th>
+                          <th >
+                            <font color="black">Fecha Fin</font>
+                              
+                          </th>
+                          <th >
+                            <font color="black">Posibles Efectos</font>
+                              
+                          </th>
+                          <th >
+                            <font color="black">Notas</font>
+                              
+                          </th>
+                          <th>
+                            <font color="black">  Eliminar Medicamento</font>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let med of medicamento">
+                          <td >
+                            <font color="black">{{med.nombre}}</font>
+                          </td>
+                          <td >
+                            <font color="black">
+                             Cantidad:{{med.dosis.cantidad}} <br>
+                            Frecuencia: {{med.dosis.frecuencia}} 
+                            </font>
+                          </td>
+                          <td >
+                            <font color="black">{{med.fechainicio | date:'dd/MM/yyyy'}}</font>
+                          </td>
+                          <td >
+                            <font color="black">{{med.fechafin | date:'dd/MM/yyyy'}}</font>
+                          </td>
+                          <td >
+                            <font color="black">{{med.efectos}}</font>
+                          </td>
+                          <td >
+                            <font color="black">{{med.notas}}</font>
+                          </td>
+                          <td align="center">
+                  
+                              <button  (click)="eliminarME(med)" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                                <i class="fas fa-trash-alt"></i>
+                              </button> 
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td><font color="black">Agregar un Nuevo Medicamento</font></td>
+                          <td align="center">
+                            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#nuevoME" >
+                              <i class="fas fa-hand-holding-medical"></i>
+                            </button> 
+                          </td> 
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    
 
 
         </div>
@@ -201,21 +329,299 @@
     </div>
   </div>
 
+<!-- Modal Informacion Personal -->
+<div class="modal fade" id="exampleModalIP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="col">
+                  Informacion Personal de:  {{nombreP}}
+              </div>
+            </div>
+            <hr><br>
+            <i class="fas fa-user-friends"></i> <br>
+            <font color="#000063"> <b>Nombre Completo:</b> </font> 
+            {{personal.nombre}} {{personal.apepat}} {{personal.apemat}}<br>
+            <font color="#000063"> <b>Edad:</b> </font> 
+            {{personal.edad}}<br>
+            <font color="#000063"> <b>Domicilio</b> </font><br>
+            <font color="#000063"> <b>Calle:</b> </font> {{personal.domicilio.calle}}
+            <font color="#000063"> <b>Numero:</b> </font> {{personal.domicilio.numero}}<br>
+            <font color="#000063"> <b>Colonia:</b> </font> {{personal.domicilio.colonia}}
+            <font color="#000063"> <b>Cp:</b> </font> {{personal.domicilio.cp}}
+            <font color="#000063"> <b>Municipio:</b> </font> {{personal.domicilio.municipio}}<br>
+            <font color="#000063"> <b>Estado:</b> </font> {{personal.domicilio.estado}}
+            <font color="#000063"> <b>Pais:</b> </font> {{personal.domicilio.pais}}
+            <br>
+            <font color="#000063"> <b>Contacto:</b> </font> 
+            {{personal.contacto}}
+           
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="limp()">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal Nuevo ME -->
+    <div class="modal fade" id="nuevoME" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="col">
+                    <i class="fas fa-laptop-medical"></i>      Nuevo Medicamento <i class="fas fa-laptop-medical"></i>
+                  </div>
+                </div>
+                <hr>
+              
+                <div class="container">
+                  <div class="row">
+                    <div class="col-4"> 
+                      <font color="#000063"> <b>Nombre del medicamento</b> </font>
+                      <input type="text"   class="form-control"size=10 [(ngModel)]="nuevomedicamento.nombre"  value="nuevomedicamento.nombre"> 
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b> Fecha de Inicio </b> </font>
+                     <input type="date"   class="form-control"size=10 [(ngModel)]="nuevomedicamento.fechainicio"  value="nuevomedicamento.fechainicio"> 
+                   </div>
+                   <div class="col-4"> 
+                   
+                   <font color="#000063"> <b>Fecha de Fin</b> </font>
+                    <input type="date"   class="form-control"size=10 [(ngModel)]="nuevomedicamento.fechafin"  value="nuevomedicamento.fechafin"> 
+                  </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-4"> 
+                      
+                      <font color="#000063"> <b>Dosis</b> </font><br>
+                      <font color="#000063"> <b>Cantidad:</b> </font> <input type="number"   class="form-control"size="5"[(ngModel)]="nuevomedicamento.dosis.cantidad"  value="nuevomedicamento.cantidad"> 
+                      <font color="#000063"> <b>Frecuencia:</b> </font><input type="text"   class="form-control"size="5"[(ngModel)]="nuevomedicamento.dosis.frecuencia"  value="nuevomedicamento.frecuencia"> 
+                   
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b>Efectos secundarios</b> </font>
+                    <textarea   class="form-control" aria-label="With textarea" [(ngModel)]="nuevomedicamento.efectos"  value="nuevomedicamento.efectos"></textarea> 
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b>Notas</b> </font>
+                    <textarea class="form-control" aria-label="With textarea" [(ngModel)]="nuevomedicamento.notas"  value="nuevomedicamento.notas"></textarea> 
+                  </div>
+                  </div>
+                </div>
+                 <br>
+                <button (click)="nuevoME()" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                  Guardar
+                </button>
+  
+          </div>
+          <div class="modal-footer">
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalME">
+                  Volver
+                </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Modal Nuevo Expediente -->
+  <div class="modal fade" id="exampleModalNEX" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                    Nuevo Expediente
+                </div>
+              </div>
+              <hr>
+              <div class="container">
+                <div class="row">
+                  <div class="col-5">
+                    <font color="#000063"> <b>Paciente</b> </font>
+                  <select class="form-control" [(ngModel)]="nuevoexpediente._idpaciente" placeholder="Seleccione el Paciente">
+                    <option placeholder="Seleccione el Paciente" class="form-control" *ngFor="let paciente of paacientes; let i = index"  [value]="paacientes[i]._id" id="identificador">
+                     {{paacientes[i].nombre}} 
+                    </option>
+                  </select>
+                  </div>
+                  <div class="col-3"> 
+                    <font color="#000063"> <b>Tipo de sangre</b> </font>
+                    <input type="text"   class="form-control"size=10 [(ngModel)]="nuevoexpediente.tiposangre"  value="nuevoexpediente.tiposangre"> 
+                 
+                  </div>
+                  <div class="col-2"> 
+                    <font color="#000063"> <b>Altura-CM</b> </font>
+                    <input type="number"   class="form-control"size=10 [(ngModel)]="nuevoexpediente.Altura"  value="nuevoexpediente.Altura"> 
+  
+                  </div>
+                  <div class="col-2">
+                    <font color="#000063"> <b>Peso-KG</b> </font>
+                    <input type="number"   class="form-control"size=10 [(ngModel)]="nuevoexpediente.peso"  value="nuevoexpediente.peso"> 
+                 
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="row">
+                    <div class="col-5">----------------------------------------------------------------------------</div>
+                    <div class="col-2"> <font color="#000063"> <b>Alergias</b> </font></div>
+                    <div class="col-5">------------------------------------------------------------------------</div>
+                 
+                </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <font color="#000063"> <b>Causa</b> </font>
+                        <input type="text"   class="form-control"size=10 [(ngModel)]="nuevoexpediente.alergias[0].causa"  value="nuevoexpediente.alergias[0].causa">    
+                      </div>
+                      <div class="col-4">
+                        <font color="#000063"> <b>Sintomas</b> </font>
+                        <input type="text"   class="form-control"size=10  #sintoma >   
+                        <button (click)="sintomaas(sintoma.value)" class="btn btn-outline-success my-2 my-sm-0" type="button" >
+                          Añadir otro
+                        </button>
+                      </div>
+                      <div class="col-4">
+                        <font color="#000063"> <b>Complicacion </b> </font>
+                        <input type="text"   class="form-control"size=10 [(ngModel)]="nuevoexpediente.alergias[0].complicacion"  value="nuevoexpediente.alergias[0].complicacion">    
+                      </div>
+                    </div>
+                   
+                  </div>
+                  
+                </div>
+             
+
+
+        </div>
+        <div class="modal-footer">
+            <button (click)="nuevoEX()" class="btn btn-outline-success my-2 my-sm-0" type="button" >
+                Guardar
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal Nuevo sintoma-->
+  <div class="modal fade" id="exampleModalNSP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col">
+                   Añadir Sintomas a  {{nombreP}}
+                </div>
+              </div>
+              <hr>
+              <div class="container">
+                <div class="row">
+                  <div class="row">
+                    <div class="col-5">----------------------------------------------------------------------------</div>
+                    <div class="col-2"> <font color="#000063"> <b>Alergias</b> </font></div>
+                    <div class="col-5">------------------------------------------------------------------------</div>
+                 
+                </div>
+                    <div class="row">
+                      <div class="col-4">
+                        <font color="#000063"> <b>Causa</b> </font>
+                        <input type="text"   class="form-control"size=10 [(ngModel)]="nuevalergia.causa"  value="nuevalergia.complicacion">    
+                      </div>
+                      <div class="col-4">
+                        <font color="#000063"> <b>Sintomas</b> </font>
+                        <input type="text"   class="form-control"size=10  #sintomaa >   
+                        <button (click)="sintomaaas(sintomaa.value)" class="btn btn-outline-success my-2 my-sm-0" type="button" >
+                          Añadir otro
+                        </button>
+                      </div>
+                      <div class="col-4">
+                        <font color="#000063"> <b>Complicacion </b> </font>
+                        <input type="text"   class="form-control"size=10 [(ngModel)]="nuevalergia.complicacion"  value="nuevalergia.complicacion">    
+                      </div>
+                    </div>
+                   
+                  </div>
+                  
+                </div>
+             
+
+
+        </div>
+        <div class="modal-footer">
+            <button (click)="nuevosintoma()" class="btn btn-outline-success my-2 my-sm-0" type="button" >
+                Guardar
+              </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
   <!-- Modal Sintomas -->
   <div class="modal fade" id="exampleModalSI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-body">
               <div class="row">
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Sintomas de:{{pacientes.nombre}} 
+                  <i class="fas fa-heartbeat"></i>    Sintomas de:{{nombreP}}
                 </div>
               </div>
               <hr><br>
-
-   sintomas
+                   
+              <input type="text" class="form-control" #filtro placeholder="Buscar&hellip;" (keyup)="applyFilter(filtro.value)">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">  <font color="black"> <b>Sintoma</b> </font></th>
+                    <th scope="col">  <font color="black"> <b>Fracuencia</b> </font></th>
+                    <th scope="col">  <font color="black"> <b>Duracion</b> </font></th>
+                    <th scope="col">  <font color="black"> <b>Intensidad</b> </font></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sinto of sintooma">
+                    <td>
+                      <font color="black"> {{sinto.sintoma}} </font>
+                    </td>
+                    <td>
+                      <font color="black"> {{sinto.frecuencia}} </font>
+                    </td>
+                    <td> <font color="black"> {{sinto.duracion}} </font></td>
+                    <td> <font color="black"> {{sinto.intensidad}} </font></td>
+                   
+                    
+                  </tr>
+                 
+                </tbody>
+              </table>
 
         </div>
         <div class="modal-footer">
@@ -239,12 +645,18 @@
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Ciclos Menstruales de:{{pacientes.nombre}} 
+                    Ciclos Menstruales de:{{nombreP}}
                 </div>
               </div>
-              <hr><br>
+              <hr>
             
-  ciclos
+              <div class="container" >
+                  
+                    <canvas id="bar_chart" width="400px" height="400px"></canvas>
+                    <h3 class="text-center mt-3">Ciclos</h3>
+                 
+                
+              </div>
 
 
         </div>
@@ -270,11 +682,41 @@
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                        Quiste de: {{pacientes.nombre}}
+                  <i class="fas fa-user-nurse"></i>    Quiste de: {{nombreP}}
                 </div>
               </div>
               <hr><br>
-quiste
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">  <font color="black"> <b>Lugar</b> </font></th>
+                    <th scope="col">  <font color="black"> <b>Cancerigeno</b> </font></th>
+                    <th scope="col">  <font color="black"> <b>Removido</b> </font></th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let q of quiste">
+                    <td>
+                      <font color="black"> {{q.lugar}} </font>
+                    </td>
+                    <td>
+                      <font color="black"> {{q.cancer}} </font>
+                    </td>
+                    <td> <font color="black"> {{q.removido}} </font></td>
+                  </tr>
+                  <tr>
+                    <td> <font color="black"> <b>Datos</b> </font></td>
+                    <td *ngFor="let q of quiste">
+                      <font color="black"> Fecha de toma:{{q.datos[0].fecha | date:'dd/MM/yyyy'}} </font> <br>
+                      <font color="black"> Tamaño:{{q.datos[0].tam}} </font>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+
         </div>
         <div class="modal-footer">
             <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -297,20 +739,40 @@ quiste
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Estudios de Sangre de: {{pacientes.nombre}}
+                  <i class="fas fa-vial"></i> Estudios de Sangre de: {{nombreP}}
                 </div>
               </div>
               <hr><br>
+              
 
 
- sangre
+              <div class="container ">
+                <div class="row">
+                  <div class="col-1"><i  (click)="imenos()" class="fas fa-angle-double-left"></i></div>
+                 <div class="col-10">
+                  <canvas id="line_chart" width="400px" height="400px"></canvas>
+                  <h3 class="text-center mt-3">Line Chart</h3>
+                
+                 </div>
+                 <div class="col-1">
+                  <i class="fas fa-angle-double-right" (click)="imas()"></i>
+                 </div>
+                 
+
+                </div>
+                    
+                 
+                   
+              </div>
+
+         
         </div>
         <div class="modal-footer">
-            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button (click)="icero()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Volver
               </button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          
+          <button type="button" (click)="icero()"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
         </div>
       </div>
     </div>
@@ -318,7 +780,7 @@ quiste
 
   <!-- Modal Metodos Antconceptivos -->
   <div class="modal fade" id="exampleModalMA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
        
         <div class="modal-body">
@@ -326,12 +788,68 @@ quiste
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Metodos Anticonceptivos de : {{pacientes}}
+                  <i class="fas fa-tablets"></i> Metodos Anticonceptivos de : {{nombreP}}
                 </div>
               </div>
               <hr><br>
 
-antico
+              <table class="table table-success table-striped">
+
+                <thead>
+                  <tr>
+                    <th >
+                      <font color="black">Nombre del Medicamento</font>
+                        
+                    </th>
+                   
+                    <th >
+                      <font color="black">Fecha Inicio</font>
+                        
+                    </th>
+                    <th >
+                      <font color="black">Posibles Efectos</font>
+                        
+                    </th>
+                    <th>
+                      <font color="black">  Eliminar Medicamento</font>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let med of anticonceptico">
+                    <td >
+                      <font color="black">{{med.metodo}}</font>
+                    </td>
+                    
+                    <td >
+                      <font color="black">{{med.fechainicio | date:'dd/MM/yyyy'}}</font>
+                    </td>
+                   
+                    <td >
+                      <font color="black">{{med.efectos}}</font>
+                    </td>
+                   
+                    <td align="center">
+            
+                        <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                          <i class="fas fa-trash-alt"></i>
+                        </button> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  
+                   
+                    <td><font color="black">Agregar un Nuevo Medicamento</font></td>
+                    <td align="center">
+                      <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#nuevoME" >
+                        <i class="fas fa-hand-holding-medical"></i>
+                      </button> 
+                    </td> 
+                  </tr>
+                </tbody>
+              </table>
 
         </div>
         <div class="modal-footer">
@@ -355,7 +873,7 @@ antico
                 <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="col">
-                    Antedecentes Medicos de:  {{pacientes}}
+                    Antedecentes Medicos de:  {{nombreP}}
                 </div>
               </div>
               <hr><br>
@@ -373,7 +891,5 @@ antico
       </div>
     </div>
   </div>
-
-
 
 </html>

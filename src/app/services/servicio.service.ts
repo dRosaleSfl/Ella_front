@@ -62,11 +62,16 @@ deletexpediente(id:String){
 }
 //------- crea un nuevo expediente
 Nuevoexpediente(data:any){
+  console.log(data)
   return this.httpClient.post(`http://localhost:3001/insertEX`,data);
 }
 //----- Edita la informacion del Expediente 
 Editaexpediente(data:any,id:String){
   return this.httpClient.put(`http://localhost:3001/updateEX/${id}`,data);
+}
+Editasintoma(id:String,data:any,){
+  console.log("id"+id+"data"+data)
+ return this.httpClient.put(`http://localhost:3001/updateEX/alergia/${id}`,data);
 }
 //------------------------------------------------------- Consultas
 //------ regresa la informacion de las consultas de un solo usuario
@@ -84,7 +89,7 @@ Nuevoconsulta(data:any){
 //------------------------------------------------------- Medicamentos
 //------ regresa la informacion del mediacamento de un solo usuario
 getmedicamento(_idpaciente:String){
-  return this.httpClient.get(`http://localhost:3001/uno/${_idpaciente}`);
+  return this.httpClient.get(`http://localhost:3001/findME/uno/${_idpaciente}`);
 }
 //----- borra un medicamento en base a su id
 deletmedicamento(id:String){
@@ -92,6 +97,7 @@ deletmedicamento(id:String){
 }
 //------- crea un nuevo mediacamento
 Nuevomedicamento(data:any){
+ console.log(data)
   return this.httpClient.post(`http://localhost:3001/insertME`,data);
 }
 //------------------------------------------------------- Sintomas

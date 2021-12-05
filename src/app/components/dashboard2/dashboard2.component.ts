@@ -11,6 +11,9 @@ export class Dashboard2Component implements OnInit {
   nombre=" Hashanah Molina"
   pacientes:any
   expedientes:any
+  data={
+    nombre:" si jalan los insert "
+  }
  
   constructor( public pacienteservicio:ServicioService) { 
     
@@ -19,6 +22,15 @@ export class Dashboard2Component implements OnInit {
   
   ngOnInit(): void {
     this.getpacientes()
+    this.crearusuario()
+  }
+  crearusuario(){
+    this.pacienteservicio.Nuevousuario(this.data).subscribe(
+      res=>{
+        console.log(res)
+      }
+
+    );
   }
  getpacientes(){
    
@@ -27,7 +39,7 @@ export class Dashboard2Component implements OnInit {
         //console.log(res);
         this.expedientes = res;
         console.log(this.expedientes.data[0].peso)
-        this.pacientes=this.expedientes.data[1]._idpaciente
+        this.pacientes=this.expedientes.data
          //this.empleadobusqueda=res; 
       }
     );

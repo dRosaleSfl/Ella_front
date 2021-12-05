@@ -1,61 +1,43 @@
- <!--<body class="">
+ <body class="">
   <div class="wrapper">  
-    <div class="sidebar">   -->
+    <div class="sidebar"> 
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
     --> 
-    <!--  <div class="sidebar-wrapper">
+      <div class="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="setSelect(1)">
+            <a (click)="setSelect(1)">
               <i class="fas fa-house-user"></i>
               <p>Mi Perfil</p>
             </a>
           </li>
           <li>
-            <a href="./icons.html">
+            <a (click)="setSelect(2)">
               <i class="fas fa-folder"></i>
               <p>Expendiente Medico</p>
             </a>
           </li>
           <li>
             <a (click)="setSelect(3)">
+              <i class="fas fa-plus-square"></i>
+              <p>Registrar Ciclo menstrual</p>
+            </a>
+          </li>
+          <li>
+            <a (click)="setSelect(4)">
               <i class="fas fa-calendar-week"></i>
               <p>Calendario menstrual</p>
             </a>
           </li>
           <li>
-            <a href="./notifications.html">
-              <i class="tim-icons icon-bell-55"></i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="./user.html">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li>
-            <a href="./tables.html">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li>
-            <a href="./rtl.html">
-              <i class="far fa-edit"></i>
+            <a (click)="setSelect(9999)">
+              <i class="fas fa-edit"></i>
               <p>Editar Perfil</p>
             </a>
           </li>
           <li class="active-pro">
-            <a href="./upgrade.html">
+            <a (click)="setSelect(99999)">
               <i class="fas fa-flask"></i>
               <p>Laboratorios</p>
             </a>
@@ -64,9 +46,9 @@
       </div> 
     </div> 
 
-    <div class="main-panel">  -->
+    <div class="main-panel">
       <!-- Navbar -->
-      <!--<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle d-inline">
@@ -139,13 +121,13 @@
             </div>
           </div>
         </div>
-      </div>   -->
+      </div>
       <!-- End Navbar -->
-    <!--  <div class="content">
+    <div class="content">
         <div class="row">
-          <div class="col-md-8">  -->
+          <div class="col-md-8">
               <!-- maybe an ngSwitch could work here?-->
-            <!--  <div [ngSwitch]="select">
+            <div [ngSwitch]="select">
                 <div class="card" *ngSwitchCase="1">
                   <div class="card-header">
                     <h4>Mi Perfil</h4>
@@ -156,6 +138,15 @@
                 </div>
 
                 <div class="card" *ngSwitchCase="3">
+                  <div class="card-header">
+                    Nuevo registro
+                  </div>
+                  <div class="card-body">
+                    <app-nuevocm></app-nuevocm>
+                  </div>
+                </div>
+
+                <div class="card" *ngSwitchCase="4">
                   <div class="card-header">
                     Calendario
                   </div>
@@ -275,5 +266,4 @@
         </li>
       </ul>
     </div>
-  </div>-->
-  <app-dashboard2></app-dashboard2>
+  </div>

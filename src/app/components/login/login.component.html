@@ -14,6 +14,7 @@
 							<h3>ELLA</h3>
 						</div>
 						<div class="card-body">
+							<p class="ErrorMSG" *ngIf="notreg">Lo sentimos, pero el usuario o la contraseña no son correctos</p>
 							<form [formGroup]="sesion">
 								<div class="input-group form-group">
 									<div class="input-group-prepend">

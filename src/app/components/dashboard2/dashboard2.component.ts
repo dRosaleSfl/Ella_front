@@ -21,6 +21,7 @@ export class Dashboard2Component implements OnInit {
     this.getpacientes()
   }
  getpacientes(){
+   
     this.pacienteservicio.getexpedienteD("6193f819a39a0f39fcc3ec83").subscribe(
       res =>{
         //console.log(res);

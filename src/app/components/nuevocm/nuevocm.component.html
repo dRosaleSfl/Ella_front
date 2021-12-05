@@ -1,0 +1,20 @@
+<div class="box row" *ngIf="cmloaded|async"> <!--This one i think will have to be ngIf= promise|async-->
+    <form [formGroup] = "registroInfo">
+        <p *ngIf="errMSG" class="err">La fech de fin de ciclo es mayor a la fecha de inicio de ciclo</p>
+        <label for="start">Fecha de inicio de ciclo:</label>
+        <input type="date" id="start" name="trip-start" value="2021-11-25" formControlName="fechainicio">
+
+        <label for="start">Fecha de fin de ciclo:</label>
+        <input type="date" id="start" name="trip-start" value="2021-12-02" formControlName="fechafin">
+
+        <label for="lapso" *ngIf="this.cm.length==0">Como no tienes fechas de ciclos previos registrados, te pedimos un aproximado de hace cuantos dias tuviste tu ultimo ciclo menstrual</label>
+        <input type="number" id="lapso" formControlName="lapso" *ngIf="this.cm.length==0">
+
+        <p>Duracion de ciclo: {{duracion}}</p>
+        <p *ngIf="this.cm.length>0">Lapso entre ciclo pasado: {{lapso}}</p>
+
+        <div class="form-group button-reg">
+            <a class="btn float-right login_btn centrado" (click)="registro()">Registro de ciclo</a>
+        </div>
+    </form>
+</div>

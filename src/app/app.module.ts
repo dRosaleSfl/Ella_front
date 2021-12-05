@@ -13,6 +13,7 @@ import { RedirectComponent } from './components/redirect/redirect.component';
 import { ExpedienteComponent } from './components/expediente/expediente.component';
 import { Dashboard2Component } from './components/dashboard2/dashboard2.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NuevocmComponent } from './components/nuevocm/nuevocm.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RegisterComponent } from './components/register/register.component';
     RedirectComponent,
     ExpedienteComponent,
     Dashboard2Component,
-    RegisterComponent
+    RegisterComponent,
+    NuevocmComponent
   ],
   imports: [
     HttpClientModule,

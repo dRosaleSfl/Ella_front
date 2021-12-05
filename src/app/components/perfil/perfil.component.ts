@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioService } from 'src/app/services/servicio.service';
 
 @Component({
   selector: 'app-perfil',
@@ -8,34 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class PerfilComponent implements OnInit {
 
   perfil: any
+  usr: any
+  rsl: any
+  idval: any
 
-  constructor() {
-    this.buildPerfil() // this should use the service to get the profile from the DB using the Object_ID which i want to save as sesion data
+  constructor(private servicio: ServicioService) {
+    
    }
 
   ngOnInit(): void {
-  }
-
-  buildPerfil() {
-    this.perfil = {
-      nombre: 'Maria Antonieta',
-      apepat: 'Gonzales',
-      apemat: 'Martinez',
-      edad: 25,
-      domicilio: {
-        calle: 'Plutarco Elias Calles',
-        colonia: 'centro',
-        numero: 46,
-        numero_interno: 'NA',
-        cp: 20670,
-        municipio: 'Pabellón de Arteaga',
-        ciudad: 'Aguascalientes', // ciudad = estado
-      },
-      usuario: 'MariGM2845',
-      contraseña: 'loca69',
-      contacto: '465-126-0128',
-      tipo: 0
-    }
+    this.idval = sessionStorage.getItem("UserID")
+    this.servicio.getusuario( this.idval ).subscribe(res => {
+      this.usr = res
+      this.perfil = this.usr.data[0]
+      console.log("Perfil: ")
+      console.log(this.perfil)
+    })
   }
 
 }

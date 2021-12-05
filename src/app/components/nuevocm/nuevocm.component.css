@@ -1,0 +1,33 @@
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.box {
+    border: 3px solid green;
+  	padding: 10px;
+}
+
+.login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    }
+    
+    .login_btn:hover{
+    color: black;
+    background-color: white;
+    }
+
+    label, p {
+        color: white;
+    }
+
+    .err {
+        color: red;
+    }

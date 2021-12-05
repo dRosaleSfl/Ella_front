@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicioService } from 'src/app/services/servicio.service';
 import * as moment from 'moment'
+import { getAllLifecycleHooks } from '@angular/compiler/src/lifecycle_reflector';
 
 @Component({
   selector: 'app-calendar',
@@ -32,7 +34,7 @@ export class CalendarComponent implements OnInit {
     'Diciembre'
   ]
 
-  monthSelect: any[];
+  monthSelect: any;
   datesPeriod: any // Este es donde se pondra el resultado del querry de la bd
   dateSelect: any;
   dateValue: any;
@@ -40,43 +42,32 @@ export class CalendarComponent implements OnInit {
   today: any
   avg: any
   avg2: any
+  idval: any
+  cmloaded!: Promise<boolean>
+  cm: any
+  monthex: any // months exist
 
-  constructor() {
-    this.monthSelect = []
-    this.createCal()
-    this.getDaysFromDate(this.today.getMonth(), this.today.getFullYear())
-    this.getDatesPeriod()
-    this.getAvg()
+  constructor(private servicio: ServicioService) {
+    this.idval = sessionStorage.getItem("UserID") 
+    this.servicio.getciclo(this.idval).subscribe(res =>{
+      this.cm = res
+      this.cm = this.cm.data[0].cicloh
+      if (this.cm.length > 0) {
+        this.monthex = true
+        this.monthSelect = []
+        this.today = new Date()
+        this.getDaysFromDate(this.today.getMonth(), this.today.getFullYear())
+        this.datesPeriod = this.cm
+        this.getAvg()
+      }
+      else {
+        this.monthex = false
+      }
+      this.cmloaded = Promise.resolve(true)
+    })
    }
 
-  ngOnInit(): void {
-  }
-
-  getDatesPeriod() { // Aqui se llamara al service para sacar las fechas de los periodos pasados
-    this.datesPeriod = [ // ejemplo de lo que podria llegar desde el querry
-      {
-        fechainicio:'2021/09/5',
-        fechafinal:'2021/09/15',
-        duracion: 10,
-        lapso: 31,
-        sangrado:'fuerte'
-      },
-      {
-        fechainicio:'2021/10/7',
-        fechafinal:'2021/10/14',
-        duracion: 7,
-        lapso: 22,
-        sangrado:'fuerte'
-      },
-      {
-        fechainicio:'2021/11/09',
-        fechafinal:'2021/11/16',
-        duracion: 7,
-        lapso: 26,
-        sangrado:'fuerte'
-      }
-    ]
-  }
+  async ngOnInit() { }
 
   createCal() {
     this.dates = new Date() // December 25, 1995 23:15:30
@@ -100,10 +91,11 @@ export class CalendarComponent implements OnInit {
       return {
         name: dayObject.format("dddd"),
         value: a,
-        indexWeek: b
+        indexWeek: b,
+        month: (month+1),
+        year: year
       };
     });
-    console.log(arrayDays)
     this.monthSelect = arrayDays;
   }
 
@@ -121,13 +113,13 @@ export class CalendarComponent implements OnInit {
 
   periodo(a: any): Boolean {
     var datei // date inicio
-    var dateb = new Date(this.dateSelect.getFullYear(), this.dateSelect.getMonth(), a) // date between
+    var dateb = new Date(this.dateSelect.getFullYear(), this.dateSelect.getMonth(), a.value) // date between
     var daten // date fin
     var i = 0
     var check = false
     while (i < this.datesPeriod.length) {
       datei = new Date ( this.datesPeriod[i].fechainicio )
-      daten = new Date ( this.datesPeriod[i].fechafinal )
+      daten = new Date ( this.datesPeriod[i].fechafin )
       if( this.dateSelect.getFullYear() === datei.getFullYear() && this.dateSelect.getMonth() === datei.getMonth() ) { // YYYY/MMM/ === YYYY/MMM
         if (dateb >= datei && dateb <= daten) {
           check = true
@@ -154,6 +146,17 @@ export class CalendarComponent implements OnInit {
     }
     this.avg = cnt/this.datesPeriod.length
     this.avg2 = Math.trunc(cnt2/this.datesPeriod.length)
+  }
+
+  showcase(day: any) {
+    console.log(day)
+    console.log(this.cm)
+
+  /*
+    ya se como hacerlo, solo tengo que crear un indice temporal para recorer el cm para encontrar entre que ciclo 
+    esta la fecha a la que se le dio click, entonces guardo el indice en uno permanente y ese es lo que muestro 
+    en pantalla
+  */
   }
 
 }

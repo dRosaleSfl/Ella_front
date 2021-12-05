@@ -1,5 +1,10 @@
 <div *ngIf="sesion">
-    <app-dashboard></app-dashboard>
+    <div *ngIf="tipo == true">
+        <app-dashboard></app-dashboard>
+    </div>
+    <div *ngIf="tipo == false">
+        <app-dashboard2></app-dashboard2>
+    </div>
 </div>
 <div *ngIf="!sesion">
     <app-login></app-login>

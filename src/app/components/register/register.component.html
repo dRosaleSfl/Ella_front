@@ -122,7 +122,28 @@
                             </div>
                         </div>
                     </div>
+                    <h3>Informacion sobre su ultimo ciclo menstrual</h3>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <label for="start">Fecha de inicio de ciclo:</label>
+                            <div class="input-group form-group">
+                                <input type="date" id="start" name="trip-start" value="2021-11-25" formControlName="fechainicio">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <label for="start">Fecha de fin de ciclo:</label>
+                            <div class="input-group form-group">
+                                <input type="date" id="start" name="trip-start" value="2021-12-02" formControlName="fechafin">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-md-1">
+                            <label for="lapso">Cuantos dias aproximados entre el fin del ciclo anterior a este y el inicio de este</label>
+                            <div class="input-group form-group">
+                                <input type="number" id="lapso" formControlName="lapso">
+                            </div>
+                        </div>
+                    </div>
                     <p><small>* Si su direccion no tiene numero interno, favor de dejar campo vacio</small></p>
                     <p *ngIf="!usrvld">Contraseñas no iguales</p>
 

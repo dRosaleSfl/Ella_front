@@ -17,16 +17,26 @@ getusuarios(){
 getusuario(_idpaciente:String){
   return this.httpClient.get(`http://localhost:3001/find/uno/${_idpaciente}`);
 }
+//------ Regresa la ID de 1 usuario buscandolo por usuario
+getusuarioID(usuario:String){
+  return this.httpClient.get(`http://localhost:3001/findUserByID/${usuario}`);
+}
+//------ Regresa la ID de 1 usuario buscandolo por usuario
+getIDusuario(id:String){
+  return this.httpClient.get(`http://localhost:3001/findIDByUser/${id}`);
+}
+//------ Regresa la ID de 1 usuario buscandolo por usuario y contraseña
+getusuarioIDByAuth(usuario:String, pass:String){
+  return this.httpClient.get(`http://localhost:3001/findUserIDByAuth/${usuario}&${pass}`);
+}
+//----- Regresa la ID de 1 usuario 
 //----- borra un usuario
 deletusuario(_idpaciente:String){
   return this.httpClient.get(`http://localhost:3001/delete/${_idpaciente}`);
 }
 //------- crea un nuevo usuario
 Nuevousuario(data:any){
-  console.log("Llamado en el servicio data: ")
-  console.log(data)
-  this.httpClient.post(`http://localhost:3001/insert`,data)
-  console.log("Ya deberia de estar chtm")
+  return this.httpClient.post(`http://localhost:3001/insert`,data)
 }
 //----- Edita la informacion del usuario -(no edita domicilio ni contacto)
 Editausuario(data:any,_idpaciente:String){
@@ -108,7 +118,12 @@ deletciclo(id:String){
 }
 //------- crea un nuevo ciclo
 Nuevociclo(data:any){
+  console.log("NuevoCiclo ")
   return this.httpClient.post(`http://localhost:3001/insertCM`,data);
+}
+
+Postciclo(data:any){
+  return this.httpClient.post(`http://localhost:3001/insertnewCM`,data);
 }
 //------------------------------------------------------- Quiste
 //----- muestra los quistes de un paciente

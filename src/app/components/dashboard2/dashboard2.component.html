@@ -32,7 +32,7 @@
            
           </ul>
           
-          <button class="btn btn-outline-success my-2 my-sm-0" >Log Out</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()" >Log Out</button>
           
         </div>
       </nav>
@@ -58,7 +58,7 @@
       <div class="card-body">
 
         <div >
-            <table class="table tablesorter  table-striped"  id="">
+            <table class="table tablesorter  table-striped"  id="docpac">
               <thead class=" text-primary">
                 <tr>
                   <th  align="center">
@@ -234,89 +234,100 @@
               </div>
               <hr><br>
               <input type="text" class="form-control" #filtroo placeholder="Buscar&hellip;" (keyup)="applyFilter2(filtroo.value)">
-              
-                    <table class="table table-success table-striped">
+               <br>   
+              <div class="row">
+                  <div class="col">
+                    <font color="black">Agregar un Nuevo Medicamento</font> 
+                    <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#nuevoME" >
+                      <i class="fas fa-hand-holding-medical"></i>
+                    </button> 
+                  </div>
+                  <div class="col">
 
-                      <thead>
-                        <tr>
-                          <th >
-                            <font color="black">Nombre del Medicamento</font>
-                              
-                          </th>
-                          <th >
-                            <font color="black">Dosis</font>
-                              
-                          </th>
-                          <th >
-                            <font color="black">Fecha Inicio</font>
-                              
-                          </th>
-                          <th >
-                            <font color="black">Fecha Fin</font>
-                              
-                          </th>
-                          <th >
-                            <font color="black">Posibles Efectos</font>
-                              
-                          </th>
-                          <th >
-                            <font color="black">Notas</font>
-                              
-                          </th>
-                          <th>
-                            <font color="black">  Eliminar Medicamento</font>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let med of medicamento">
-                          <td >
-                            <font color="black">{{med.nombre}}</font>
-                          </td>
-                          <td >
-                            <font color="black">
-                             Cantidad:{{med.dosis.cantidad}} <br>
-                            Frecuencia: {{med.dosis.frecuencia}} 
-                            </font>
-                          </td>
-                          <td >
-                            <font color="black">{{med.fechainicio | date:'dd/MM/yyyy'}}</font>
-                          </td>
-                          <td >
-                            <font color="black">{{med.fechafin | date:'dd/MM/yyyy'}}</font>
-                          </td>
-                          <td >
-                            <font color="black">{{med.efectos}}</font>
-                          </td>
-                          <td >
-                            <font color="black">{{med.notas}}</font>
-                          </td>
-                          <td align="center">
+                    <font color="black">Imprimir Receta</font>
+                    <button  class="btn btn-outline-success my-2 my-sm-0" type="button"   (click)="pdf()" >
+                      <i class="fas fa-print"></i>
+                    </button> 
+
+                  </div>   
+
+                 </div>
+              <div id="medikt">
+                <br>
+                <i class="fas fa-pills"></i>Medicamentos de: {{nombreP}}
+                <br>
+
+                 <table class="table table-success table-striped">
+                   
+                  <thead>
+                    <tr>
+                      <th >
+                        <font color="black">Nombre del Medicamento</font>
+                          
+                      </th>
+                      <th >
+                        <font color="black">Dosis</font>
+                          
+                      </th>
+                      <th >
+                        <font color="black">Fecha Inicio</font>
+                          
+                      </th>
+                      <th >
+                        <font color="black">Fecha Fin</font>
+                          
+                      </th>
+                      <th >
+                        <font color="black">Posibles Efectos</font>
+                          
+                      </th>
+                      <th >
+                        <font color="black">Notas</font>
+                          
+                      </th>
+                      <th>
+                        <font color="black">  Eliminar Medicamento</font>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let med of medicamento">
+                      <td >
+                        <font color="black">{{med.nombre}}</font>
+                      </td>
+                      <td >
+                        <font color="black">
+                         Cantidad:{{med.dosis.cantidad}} <br>
+                        Frecuencia: {{med.dosis.frecuencia}} 
+                        </font>
+                      </td>
+                      <td >
+                        <font color="black">{{med.fechainicio | date:'dd/MM/yyyy'}}</font>
+                      </td>
+                      <td >
+                        <font color="black">{{med.fechafin | date:'dd/MM/yyyy'}}</font>
+                      </td>
+                      <td >
+                        <font color="black">{{med.efectos}}</font>
+                      </td>
+                      <td >
+                        <font color="black">{{med.notas}}</font>
+                      </td>
+                      <td align="center">
                   
-                              <button  (click)="eliminarME(med)" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
-                                <i class="fas fa-trash-alt"></i>
-                              </button> 
-                          </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td><font color="black">Agregar un Nuevo Medicamento</font></td>
-                          <td align="center">
-                            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#nuevoME" >
-                              <i class="fas fa-hand-holding-medical"></i>
-                            </button> 
-                          </td> 
-                        </tr>
+                        <button  (click)="eliminarME(med)" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                          <i class="fas fa-trash-alt"></i>
+                        </button> 
+                    </td>
                       </tbody>
-                    </table>
+                 </table>
 
-                    
+                 <br>
+                 <br>
 
+                Firma doctor:_______________________________________
 
+              </div>
         </div>
         <div class="modal-footer">
             <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -710,7 +721,7 @@
                     <td> <font color="black"> <b>Datos</b> </font></td>
                     <td *ngFor="let q of quiste">
                       <font color="black"> Fecha de toma:{{q.datos[0].fecha | date:'dd/MM/yyyy'}} </font> <br>
-                      <font color="black"> Tamaño:{{q.datos[0].tam}} </font>
+                      <font color="black"> Tamaño:{{q.datos[0].tam}} Milimetros </font>
                     </td>
                   </tr>
                  
@@ -750,18 +761,22 @@
                 <div class="row">
                   <div class="col-1"><i  (click)="imenos()" class="fas fa-angle-double-left"></i></div>
                  <div class="col-10">
-                  <canvas id="line_chart" width="400px" height="400px"></canvas>
+                   <div id="sangre">
+                          
+                    <canvas id="line_chart" width="400px" height="400px"></canvas>
                   <h3 class="text-center mt-3">Line Chart</h3>
-                
+
+                  Estudios de Sangre de: {{nombreP}}
+                   </div>
                  </div>
                  <div class="col-1">
                   <i class="fas fa-angle-double-right" (click)="imas()"></i>
                  </div>
-                 
-
                 </div>
                     
-                 
+                <button (click)="pdf2()" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                  Imprimir <i class="fas fa-print"></i>
+                </button>
                    
               </div>
 

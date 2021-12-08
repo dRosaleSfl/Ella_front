@@ -1,9 +1,12 @@
+import { ChangesService } from 'src/app/services/changes/changes.service';
 
 import { ServicioService } from './../../services/servicio.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, Validators} from '@angular/forms';
 import { Chart, registerables } from 'chart.js';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 
 
 
@@ -14,7 +17,7 @@ import { Chart, registerables } from 'chart.js';
 })
 export class Dashboard2Component implements OnInit {
   nombre=" Hashanah Molina" // datos del doc
-  _iddoctor="6193f819a39a0f39fcc3ec83"
+  _iddoctor="61aeaf86408a9b2f84dde371"
  
   ////// estudios
   nombreestudio:[]=[]
@@ -142,7 +145,7 @@ nuevoexpediente={
 
  
 
-  constructor( public pacienteservicio:ServicioService,private formBuilder: FormBuilder) { 
+  constructor( public pacienteservicio:ServicioService,private formBuilder: FormBuilder, public servicio:ChangesService) { 
     Chart.register(...registerables);
 
   }
@@ -168,8 +171,8 @@ canvas(op:Number){
           labels: [this.analisi.estudio[0].nombrestudio,this.analisi1.estudio[0].nombrestudio,this.analisi2.estudio[0].nombrestudio ],
           datasets: [
           {label: 'RESULTADO',data: [this.analisi.estudio[0].resultado,this.analisi1.estudio[0].resultado,this.analisi2.estudio[0].resultado],backgroundColor: ['rgba(255, 99, 132, 0.2)',],borderColor: ['rgb(255, 99, 132)',],borderWidth: 1},
-          {label: 'MAXIMO',data: [this.analisi.estudio[0].variacion,this.analisi1.estudio[0].variacion,this.analisi2.estudio[0].variacion],backgroundColor: ['rgba(255, 159, 64, 0.2)',],borderColor: ['rgb(255, 159, 64)',],borderWidth: 1},
-          {label: 'MINIMO',data: [this.analisi.estudio[0].variacion2,this.analisi1.estudio[0].variacion2,this.analisi2.estudio[0].variacion2],backgroundColor: ['rgba(255, 205, 86, 0.2)',],borderColor: ['rgb(255, 205, 86,)',],borderWidth: 1},
+          {label: 'MINIMO',data: [this.analisi.estudio[0].variacion,this.analisi1.estudio[0].variacion,this.analisi2.estudio[0].variacion],backgroundColor: ['rgba(255, 159, 64, 0.2)',],borderColor: ['rgb(255, 159, 64)',],borderWidth: 1},
+          {label: 'MAXIMO',data: [this.analisi.estudio[0].variacion2,this.analisi1.estudio[0].variacion2,this.analisi2.estudio[0].variacion2],backgroundColor: ['rgba(255, 205, 86, 0.2)',],borderColor: ['rgb(255, 205, 86,)',],borderWidth: 1},
          ]
         },
         options: {
@@ -536,4 +539,38 @@ canvas(op:Number){
       })
     
   }
+  pdf(){
+   /* const doc = new jsPDF();
+    doc.text('Hello world!', 10, 10);
+    doc.save('hello-world.pdf');*/
+    var  element = document.getElementById('medikt') as HTMLCanvasElement;
+    html2canvas(element).then((canvas)=>{
+         console.log(canvas)
+         var data = canvas.toDataURL('image/png')
+         var doc = new jsPDF();
+         var tam = canvas.height * 200 /canvas.width
+         doc.addImage(data,3,3,200, tam)
+         doc.save('Receta.pdf')
+
+    })
+  }
+  pdf2(){
+    /* const doc = new jsPDF();
+     doc.text('Hello world!', 10, 10);
+     doc.save('hello-world.pdf');*/
+     var  element = document.getElementById('sangre') as HTMLCanvasElement;
+     html2canvas(element).then((canvas)=>{
+          console.log(canvas)
+          var data = canvas.toDataURL('image/png')
+          var doc = new jsPDF();
+          var tam = canvas.height * 200 /canvas.width
+          doc.addImage(data,3,3,200, tam)
+          doc.save('Sangre.pdf')
+ 
+     })
+   }
+   logout(){
+    sessionStorage.clear();
+    this.servicio.sesionCheck();
+   }
 }

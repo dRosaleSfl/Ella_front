@@ -14,6 +14,10 @@ import { ExpedienteComponent } from './components/expediente/expediente.componen
 import { Dashboard2Component } from './components/dashboard2/dashboard2.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NuevocmComponent } from './components/nuevocm/nuevocm.component';
+import { EditperfilComponent } from './components/editperfil/editperfil.component';
+import { RegisterdocComponent } from './components/registerdoc/registerdoc.component';
+import { ConfigComponent } from './components/config/config.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { NuevocmComponent } from './components/nuevocm/nuevocm.component';
     ExpedienteComponent,
     Dashboard2Component,
     RegisterComponent,
-    NuevocmComponent
+    NuevocmComponent,
+    EditperfilComponent,
+    RegisterdocComponent,
+    ConfigComponent,
+    StatsComponent
   ],
   imports: [
     HttpClientModule,

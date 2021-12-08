@@ -12,6 +12,7 @@ import { ServicioService } from 'src/app/services/servicio.service';
 export class LoginComponent implements OnInit {
   sesion
   newUser=false
+  tipo=0
   rsl:any
   notreg=false // not registered
 
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       if (this.rsl.data.length === 1) { // if user exists
         this.notreg = false
         sessionStorage.setItem("UserID", this.rsl.data[0]._id)
+        sessionStorage.setItem("tipo", this.rsl.data[0].tipo)
         this.changes.sesionCheck()
         
       }
@@ -46,8 +48,9 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("UserID", "5") */ // instead of 5 it should be the _objectID of the user returned, with this i should be able to call the info of the user and get it in every page as it is on sesionstorage
   }
 
-  register() {
+  register(a: any) {
     console.log("Register")
+    this.tipo=a
     this.newUser=true
   }
 

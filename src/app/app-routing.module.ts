@@ -8,7 +8,6 @@ import { RedirectComponent } from './components/redirect/redirect.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: RedirectComponent},
   {
     path: 'dashboard', 

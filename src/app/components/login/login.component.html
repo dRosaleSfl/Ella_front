@@ -44,14 +44,18 @@
 							</form>
 						</div>
 						<div class="card-footer">
-							<p>¿Nueva aqui? intenta <a (click)="register()"> registrarte </a> </p>
+							<p>¿Nueva aqui? intenta <a href="#" (click)="register(1)"> registrarte </a></p>
+							<p>¿Buscas mejorar tu servico ginecologico? <a href="#" (click)="register(2)">registrate como profecionista</a></p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div *ngIf="newUser">
+		<div *ngIf="this.tipo === 1">
 			<app-register></app-register>
+		</div>
+		<div *ngIf="this.tipo === 2">
+			<app-registerdoc></app-registerdoc>
 		</div>
 	</body>
 </html>

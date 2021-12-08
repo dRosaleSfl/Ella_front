@@ -3,10 +3,10 @@
   <hr>
   <div class="row">
     
-    <p>Nombre {{this.perfil.nombre}}</p> 
-    <p>Primer apelpdo {{ this.perfil.apepat }}</p>
-    <p>Segundo apelpdo {{ this.perfil.apemat }}</p>
-    <p>Edad {{ this.perfil.edad }}</p>
+    <p>Nombre: {{this.perfil.nombre}}</p> 
+    <p>Primer apellido: {{ this.perfil.apepat }}</p>
+    <p>Segundo apellido: {{ this.perfil.apemat }}</p>
+    <p>Edad: {{ this.perfil.edad }}</p>
 
   </div>
 
@@ -16,5 +16,7 @@
 
   <h5>Informacion de contacto</h5>
   <hr>
-  <p>Piiiiito</p>
+  <p># de celular: {{this.perfil.contacto.celular}}</p>
+  <p># de casa: {{this.perfil.contacto.telefonocasa}}</p>
+  <p>Correo electronico: {{this.perfil.contacto.correo}}</p>
 </form>

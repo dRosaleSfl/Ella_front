@@ -29,6 +29,37 @@
 				Dias promedio entre periodo menstrual: {{ avg2 }} <br>
     		</p>
 		</div>
+		<div *ngIf="show">
+			<div *ngIf="estado === 0">
+				<h2>Informacion de ciclo seleccionado</h2>
+				<p>Fecha de inicio: {{showi}}</p>
+				<p>Fecha de fin: {{showf}}</p>
+				<p>Duracion del ciclo: {{showdur}}</p>
+				<p>Lapso entre este y el ultimo ciclo: {{showlap}}</p>
+				<a class="btn float-right login_btn" (click)="setEstado(1)"> <i class="fas fa-edit"></i> Editar</a>
+				<a class="btn float-right login_btn" (click)="setEstado(2)"> <i class="fas fa-trash-alt"></i> Borrar</a>
+			</div>
+
+			<div *ngIf="estado === 1">
+				<h2>Edicion de ciclo seleccionado</h2>
+				<form [formGroup] = "edicionInfo">
+					<p>Fecha de inicio: </p>
+					<input type="date" id="start" name="trip-start" value="2013-01-08" formControlName="fechainicio">
+					<p>Fecha de fin: </p>
+					<input type="date" id="start" name="trip-start" value="2021-12-02" formControlName="fechafin">
+				</form>
+				<a class="btn float-right login_btn" (click)="edit()"> <i class="fas fa-edit"></i> Actualizar</a>
+				<a class="btn float-right login_btn centrado" (click)="setEstado(0)"> <i class="fas fa-undo-alt"></i> Regresar</a>
+			</div>
+
+			<div *ngIf="estado === 2">
+				<h2>Eliminacion de ciclo seleccionado</h2>
+				<p>Fecha de inicio: {{showi}}</p>
+				<p>Fecha de fin: {{showf}}</p>
+				<a class="btn float-right login_btn" (click)="delete()"> <i class="fas fa-trash-alt"></i> Borrar</a>
+				<a class="btn float-right login_btn centrado" (click)="setEstado(0)"> <i class="fas fa-undo-alt"></i> Regresar</a>
+			</div>
+		</div>
 	</div>
 	<div *ngIf="!monthex">
 		<p>Lo sentimos, parece ser que no tiene ningun mes registrado aun</p>

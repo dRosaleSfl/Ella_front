@@ -1,0 +1,112 @@
+<small>La informacion que no desees cambiar puedes dejarla vacia</small>
+<form [formGroup]="editinfo">
+    <h3>Informacion Personal</h3>
+    <hr>
+    <div class="row"> 
+        <div class="col-md-3 px-md-1">
+            <p>Nombre(s): </p>
+            <p>Primer apellido: </p>
+            <p>Segundo apellido: </p>
+            <p>Edad: </p>
+        </div>
+
+        <div class="col-md-5 px-md-1">
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="Nombre de pila" formControlName="nombre">	
+            </div>
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="Primer Apellido" formControlName="apepat">
+            </div>
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="Segundo Apellido" formControlName="apemat">
+            </div>
+            <div class="input-group form-group">
+                <input type="number" class="form-control" formControlName="edad">
+            </div>
+        </div>
+    </div>
+
+    <h3>Informacion de Usuario</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-3 px-md-1">
+            <p>Ingrese su nombre de usuario: </p>
+            <p>Ingrese su contraseña: </p>
+            <p>Vuelva a ingresar su contraseña: </p>
+        </div>
+
+        <div class="col-md-5 px-md-1">
+            <div class="input-group form-group">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" formControlName="usuario">	
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="password" class="form-control" placeholder="Ingrese su contraseña" formControlName="contraseña">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="password" class="form-control" placeholder="Repita su contraseña" formControlName="contraseña2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Informacion Adicional</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3 px-md-1">
+                            <p>Calle: </p>
+                            <p>Colonia: </p>
+                            <p>Numero: </p>
+                            <p>Numero interno: </p>
+                            <p>Codigo postal: </p>
+                            <p>Municipio: </p>
+                            <p>Estado: </p>
+                        </div>
+                        <div class="col-md-5 px-md-1">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Calle" formControlName="calle">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Colonia" formControlName="colonia">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Numero" formControlName="numero">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Numero Interno*" formControlName="numero_interno">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="number" class="form-control" placeholder="Codigo Postal" formControlName="cp">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Municipio" formControlName="municipio">
+                            </div>
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Ciudad" formControlName="ciudad">
+                            </div>
+                        </div>
+                    </div>
+    <h3>Informacion de Contacto</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 px-md-1">
+            <p>Numero celular (449-123-4567): </p>
+            <p>Numero de casa (449-123-4567): </p>
+            <p>Correo electronico: </p>
+        </div>
+        <div class="col-md-4 px-md-1">
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="449-123-4567" formControlName="celular">
+            </div>
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="449-123-4567" formControlName="casa">
+            </div>
+            <div class="input-group form-group">
+                <input type="text" class="form-control" placeholder="correo@correo.com" formControlName="correo">
+            </div>
+        </div>
+    </div>
+    <p><small>* Si su direccion no tiene numero interno, favor de dejar campo vacio</small></p>
+
+    <div class="form-group button-reg">
+        <a class="btn float-right login_btn centrado" (click)="edit()">Actualizar</a>
+    </div> 
+</form>

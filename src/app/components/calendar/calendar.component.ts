@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicioService } from 'src/app/services/servicio.service';
 import * as moment from 'moment'
-import { getAllLifecycleHooks } from '@angular/compiler/src/lifecycle_reflector';
+import { FormBuilder, ReactiveFormsModule  } from '@angular/forms'; 
 
 @Component({
   selector: 'app-calendar',
@@ -46,11 +46,30 @@ export class CalendarComponent implements OnInit {
   cmloaded!: Promise<boolean>
   cm: any
   monthex: any // months exist
+  show: any = false
+  showe: any // show edit
+  showd: any // show delete
+  showi: any // show inicio
+  showf: any // show final
+  showdur: any
+  showlap: any
+  estado = 0
+  edicionInfo: any
+  posreg: any
+  idreg: any
+  idobj: any
 
-  constructor(private servicio: ServicioService) {
+  constructor(private servicio: ServicioService, private formBuilder: FormBuilder) {
     this.idval = sessionStorage.getItem("UserID") 
+    this.edicionInfo = formBuilder.group({
+      fechainicio: '',
+      fechafin: '',
+      duracion: 0,
+      lapso: 0
+    })
     this.servicio.getciclo(this.idval).subscribe(res =>{
       this.cm = res
+      this.idobj = this.cm.data[0]._id
       this.cm = this.cm.data[0].cicloh
       if (this.cm.length > 0) {
         this.monthex = true
@@ -151,12 +170,77 @@ export class CalendarComponent implements OnInit {
   showcase(day: any) {
     console.log(day)
     console.log(this.cm)
+    var i, itemp = 0
+    var dateitemp, datemp, dateftemp // date & temp ha ha, get it?
+    while (itemp < this.cm.length) {
+      dateitemp = new Date(this.cm[itemp].fechainicio)
+      datemp = new Date(day.year, (day.month-1), day.value)
+      dateftemp = new Date(this.cm[itemp].fechafin)
+      if ( datemp >= dateitemp && datemp <= dateftemp ) { // si la fecha seleccionada esta entre el ciclo que se esta viendo actualmente
+        this.showi = dateitemp.getDate()+'/'+(dateitemp.getMonth()+1)+'/'+dateitemp.getFullYear()
+        this.showf = dateftemp.getDate()+'/'+(dateftemp.getMonth()+1)+'/'+dateftemp.getFullYear()
+        this.showdur = this.cm[itemp].duracion
+        this.showlap = this.cm[itemp].lapso
+        i = itemp
+        this.posreg = itemp
+        this.idreg = this.cm[itemp]._id
+      }
+      itemp++
+    }
+    this.show = true
+    this.estado = 0
+  }
 
-  /*
-    ya se como hacerlo, solo tengo que crear un indice temporal para recorer el cm para encontrar entre que ciclo 
-    esta la fecha a la que se le dio click, entonces guardo el indice en uno permanente y ese es lo que muestro 
-    en pantalla
-  */
+  edit() {
+    var reg = this.edicionInfo.value
+    reg.fechainicio = reg.fechainicio.substring(0,4)+'/'+reg.fechainicio.substring(5,7)+'/'+reg.fechainicio.substring(8,10)
+    reg.fechafin = reg.fechafin.substring(0,4)+'/'+reg.fechafin.substring(5,7)+'/'+reg.fechafin.substring(8,10)
+    var datei = new Date(reg.fechainicio)
+    var datef = new Date(reg.fechafin)
+    var i = 0
+    var menos = 36525
+    console.log(datei)
+    console.log(datef)
+    reg.duracion = ( datef.getTime() - datei.getTime() ) / (1000 * 3600 * 24)
+    reg.duracion++
+    while (i < this.cm.length) { // this should help us get the cycle before this one
+      var fechauf = new Date (this.cm[i].fechafin)
+      console.log (datei + " " + fechauf)
+      if ( datei > fechauf ) {
+        var cant = ( datei.getTime() - fechauf.getTime()  ) / (1000 * 3600 * 24)
+        if (cant < menos) {
+          cant--
+          reg.lapso = cant
+        }
+      }
+      i++
+    }
+    if (reg.lapso === 0) {
+      reg.lapso = this.cm[this.posreg].lapso
+    }
+    reg.id = this.idreg
+    console.log(reg)
+    this.servicio.editcicloh(reg).subscribe(res=>{
+      console.log(res)
+      console.log("Hello?")
+    })
+    //after this we should add the function to change the lapso field in all the ones
+  }
+
+  delete() {
+    console.log(this.idobj)
+    var deleteRegistro = {
+      idobj: this.idobj,
+      idarr: this.idreg
+    }
+    console.log(deleteRegistro)
+    this.servicio.pullcicloh(deleteRegistro).subscribe(res=>{
+      console.log("que pedo que pedo")
+    })
+  }
+
+  setEstado(val: number) {
+    this.estado = val
   }
 
 }

@@ -41,14 +41,14 @@ export class NuevocmComponent implements OnInit {
 
   registro() {
     var registroDates = this.registroInfo.value
-    var fechani = new Date (registroDates.fechainicio)
-    var fechanf = new Date (registroDates.fechafin)
+    var fechani = new Date (registroDates.fechainicio.substring(0,4)+'/'+registroDates.fechainicio.substring(5,7)+'/'+registroDates.fechainicio.substring(8,10) )
+    var fechanf = new Date (registroDates.fechafin.substring(0,4)+'/'+registroDates.fechafin.substring(5,7)+'/'+registroDates.fechafin.substring(8,10) )
     var i = 0
     var menos = 36525
     var registroFinal = {
       id: this.idval,
-      fechainicio: registroDates.fechainicio,
-      fechafin: registroDates.fechafin,
+      fechainicio: fechani.getFullYear()+'/'+(fechani.getMonth()+1)+'/'+fechani.getDate(),
+      fechafin: fechanf.getFullYear()+'/'+(fechanf.getMonth()+1)+'/'+fechanf.getDate(),
       lapso: registroDates.lapso,
       duracion: 0
     }
@@ -63,12 +63,14 @@ export class NuevocmComponent implements OnInit {
         if ( fechani > fechauf ) {
           var cant = ( fechani.getTime() - fechauf.getTime()  ) / (1000 * 3600 * 24)
           if (cant < menos) {
+            cant--
             registroFinal.lapso = cant
           }
         }
         i++
       }
       registroFinal.duracion = ( fechanf.getTime() - fechani.getTime()  ) / (1000 * 3600 * 24)
+      registroFinal.duracion++
       this.duracion = registroFinal.duracion
       this.lapso = registroFinal.lapso
       console.log(registroFinal)

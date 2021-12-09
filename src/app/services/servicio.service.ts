@@ -101,6 +101,15 @@ Nuevoconsulta(data:any){
 getmedicamento(_idpaciente:String){
   return this.httpClient.get(`http://localhost:3001/findME/uno/${_idpaciente}`);
 }
+//-----------------------------------------med en base a su id
+getmedicamentoo(_id:String){
+  return this.httpClient.get(`http://localhost:3001/findME/dos/${_id}`);
+}
+///---------------------- editar med
+Editmed(id:String,data:any,){
+  console.log("id"+id+"data"+data)
+ return this.httpClient.put(`http://localhost:3001/updateME/${id}`,data);
+}
 //----- borra un medicamento en base a su id
 deletmedicamento(id:String){
   return this.httpClient.get(`http://localhost:3001/deleteME/${id}`);

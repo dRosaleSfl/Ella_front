@@ -16,8 +16,9 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./dashboard2.component.css']
 })
 export class Dashboard2Component implements OnInit {
-  nombre=" Hashanah Molina" // datos del doc
-  _iddoctor="61aeaf86408a9b2f84dde371"
+  nombre:any // datos del doc
+  _iddoctor:any
+ // _iddoctor="61aeaf86408a9b2f84dde371"
  
   ////// estudios
   nombreestudio:[]=[]
@@ -40,6 +41,7 @@ export class Dashboard2Component implements OnInit {
   quiste:any
   sintoomabusqueda:any
   medbusqueda:any
+  editME:any
 analisi={
     estudio:[
       {
@@ -123,7 +125,33 @@ analisi={
   efectos:[],
   notas:[]
 }
-nuevoexpediente={
+editnuevomedicamento={
+  nombre:" ",
+  dosis:{
+      cantidad:0,
+      frecuencia:" ",
+  },
+  fechainicio:" ",
+  fechafin:" ",
+  efectos:[],
+  notas:[]
+}
+  // shows
+  nombreP=" "
+  id=" "
+  nuevoexpediente:any
+
+ 
+
+  constructor( public pacienteservicio:ServicioService,private formBuilder: FormBuilder, public servicio:ChangesService) { 
+    Chart.register(...registerables);
+    this.nombre=sessionStorage.getItem("nombre")
+    
+    this._iddoctor=sessionStorage.getItem("UserID")
+
+
+    
+  this.nuevoexpediente={
   _idpaciente:"",
   alergias:[
     {
@@ -138,15 +166,6 @@ nuevoexpediente={
   _iddoctor: this._iddoctor
 }
 
-  // shows
-  nombreP=" "
-  id=" "
-  
-
- 
-
-  constructor( public pacienteservicio:ServicioService,private formBuilder: FormBuilder, public servicio:ChangesService) { 
-    Chart.register(...registerables);
 
   }
 
@@ -572,5 +591,62 @@ canvas(op:Number){
    logout(){
     sessionStorage.clear();
     this.servicio.sesionCheck();
+   }
+   editarMEe(item:any){
+     console.log(item._id)
+     this.editME=item._id
+    this.pacienteservicio.getmedicamentoo(item._id).subscribe(
+      res =>{
+        console.log(res);
+        this.basura = res
+       console.log(this.basura.data[0].nombre)
+       this.editnuevomedicamento.nombre=this.basura.data[0].nombre
+       this.editnuevomedicamento.dosis.cantidad=this.basura.data[0].dosis.cantidad
+       this.editnuevomedicamento.dosis.frecuencia=this.basura.data[0].dosis.frecuencia
+       this.editnuevomedicamento.notas=this.basura.data[0].notas
+       this.editnuevomedicamento.efectos=this.basura.data[0].efectos
+       this.editnuevomedicamento.fechafin=this.basura.data[0].fechafin
+       this.editnuevomedicamento.fechainicio=this.basura.data[0].fechainicio
+      })
+
+   }
+   editarME(){
+
+    //this.nuevomedicamento._idpaciente= this.id
+   console.log(this.editnuevomedicamento)
+   Swal.fire({
+      title: 'Estas Seguro de Editar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pacienteservicio.Editmed(this.editME,this.editnuevomedicamento).subscribe(
+          res =>{
+            console.log(res);
+            this.editnuevomedicamento={
+              nombre:" ",
+              dosis:{
+                  cantidad:0,
+                  frecuencia:" ",
+              },
+              fechainicio:" ",
+              fechafin:" ",
+              efectos:[],
+              notas:[]
+            }
+           this.verME()
+
+
+          })
+        Swal.fire(
+          'Editado!',
+          'success'
+        )
+      }
+    })
+
    }
 }

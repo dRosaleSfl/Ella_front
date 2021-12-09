@@ -193,15 +193,14 @@
                 <i class="fas fa-vial"></i>  Estudios de sangre  
               </button><br>
               <br>
-              <button (click)="verAM()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAM">
-                <i class="fas fa-file-medical"></i>  Antecedentes<i class="fas fa-file-medical"></i>
-              </button><br>
-              <br>
               <button (click)="verMA()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalMA">
                 <i class="fas fa-tablets"></i>  Metodos Anticonceptivos
               </button><br>
               <br>
-              
+             <!-- <button (click)="verAM()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalAM">
+                <i class="fas fa-file-medical"></i>  Antecedentes<i class="fas fa-file-medical"></i>
+              </button><br>
+              <br>-->
               <button (click)="verCM()" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalCM">
                 <i class="far fa-calendar-alt"></i> Ciclo<i class="far fa-calendar-alt"></i>
               </button> <br>
@@ -318,6 +317,9 @@
                         <button  (click)="eliminarME(med)" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
                           <i class="fas fa-trash-alt"></i>
                         </button> 
+                        <button  (click)="editarMEe(med)" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#editME">
+                          <i class="fas fa-edit"></i>
+                        </button> 
                     </td>
                       </tbody>
                  </table>
@@ -433,6 +435,72 @@
                 </div>
                  <br>
                 <button (click)="nuevoME()" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
+                  Guardar
+                </button>
+  
+          </div>
+          <div class="modal-footer">
+              <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModalME">
+                  Volver
+                </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- Modal edit ME -->
+     <div class="modal fade" id="editME" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="col">
+                    <i class="fas fa-laptop-medical"></i> Editar Medicamento <i class="fas fa-laptop-medical"></i>
+                  </div>
+                </div>
+                <hr>
+              
+                <div class="container">
+                  <div class="row">
+                    <div class="col-4"> 
+                      <font color="#000063"> <b>Nombre del medicamento</b> </font>
+                      <input type="text"   class="form-control"size=10 [(ngModel)]="editnuevomedicamento.nombre"  value="editnuevomedicamento.nombre"> 
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b> Fecha de Inicio </b> </font>
+                     <input type="date"   class="form-control"size=10 [(ngModel)]="editnuevomedicamento.fechainicio"  value="editnuevomedicamento.fechainicio"> 
+                   </div>
+                   <div class="col-4"> 
+                   
+                   <font color="#000063"> <b>Fecha de Fin</b> </font>
+                    <input type="date"   class="form-control"size=10 [(ngModel)]="editnuevomedicamento.fechafin"  value="editnuevomedicamento.fechafin"> 
+                  </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-4"> 
+                      
+                      <font color="#000063"> <b>Dosis</b> </font><br>
+                      <font color="#000063"> <b>Cantidad:</b> </font> <input type="number"   class="form-control"size="5"[(ngModel)]="editnuevomedicamento.dosis.cantidad"  value="editnuevomedicamento.cantidad"> 
+                      <font color="#000063"> <b>Frecuencia:</b> </font><input type="text"   class="form-control"size="5"[(ngModel)]="editnuevomedicamento.dosis.frecuencia"  value="editnuevomedicamento.frecuencia"> 
+                   
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b>Efectos secundarios</b> </font>
+                    <textarea   class="form-control" aria-label="With textarea" [(ngModel)]="editnuevomedicamento.efectos"  value="editnuevomedicamento.efectos"></textarea> 
+                    </div>
+                   <div class="col-4"> 
+                    <font color="#000063"> <b>Notas</b> </font>
+                    <textarea class="form-control" aria-label="With textarea" [(ngModel)]="editnuevomedicamento.notas"  value="editnuevomedicamento.notas"></textarea> 
+                  </div>
+                  </div>
+                </div>
+                 <br>
+                <button (click)="editarME()" class="btn btn-outline-success my-2 my-sm-0" type="button"  >
                   Guardar
                 </button>
   
@@ -663,8 +731,7 @@
             
               <div class="container" >
                   
-                    <canvas id="bar_chart" width="400px" height="400px"></canvas>
-                    <h3 class="text-center mt-3">Ciclos</h3>
+  
                  
                 
               </div>

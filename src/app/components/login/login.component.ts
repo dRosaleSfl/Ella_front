@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       if (this.rsl.data.length === 1) { // if user exists
         this.notreg = false
         sessionStorage.setItem("UserID", this.rsl.data[0]._id)
+        sessionStorage.setItem("nombre", this.rsl.data[0].nombre+" "+this.rsl.data[0].apepat+" "+this.rsl.data[0].apemat)
         sessionStorage.setItem("tipo", this.rsl.data[0].tipo)
         this.changes.sesionCheck()
         

@@ -12,6 +12,7 @@ export class PerfilComponent implements OnInit {
   usr: any
   rsl: any
   idval: any
+  contactos: any
 
   constructor(private servicio: ServicioService) {
     
@@ -22,6 +23,7 @@ export class PerfilComponent implements OnInit {
     this.servicio.getusuario( this.idval ).subscribe(res => {
       this.usr = res
       this.perfil = this.usr.data[0]
+      this.contactos = this.perfil.contacto[0]
       console.log("Perfil: ")
       console.log(this.perfil)
     })

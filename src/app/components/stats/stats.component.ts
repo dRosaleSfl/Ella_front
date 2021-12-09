@@ -15,7 +15,7 @@ export class StatsComponent implements OnInit {
   cm: any
   idval: any
 
-  constructor(private servicio: ServicioService) {
+  constructor(private servicio: ServicioService) { 
     Chart.register(...registerables)
     this.idval = sessionStorage.getItem("UserID") 
     servicio.getciclo(this.idval).subscribe(res=>{

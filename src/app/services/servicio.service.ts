@@ -44,6 +44,8 @@ Editausuario(data:any,_idpaciente:String){
 }
 //----- Edita la informacion del domicilio
 Editadomicilio(data:any){
+  console.log("hmmm que onda")
+  console.log(data)
   return this.httpClient.post(`http://localhost:3001/updatecon`,data);
 }
 //----- Edita la informacion del contacto

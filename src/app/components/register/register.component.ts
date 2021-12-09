@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
   registro() {
     var rsl:any
     var exst: any
+    var arr:any = []
     var ID
     if (this.registroinfo.value.contraseña != this.registroinfo.value.contraseña2) {
       this.usrvld = false
@@ -64,6 +65,15 @@ export class RegisterComponent implements OnInit {
         this.usrvld = true
       }
       if (this.usrvld) {
+        if (this.registroinfo.value.celular != '') {
+          arr.push(this.registroinfo.value.celular)
+        }
+        if (this.registroinfo.value.casa != '') {
+          arr.push(this.registroinfo.value.casa)
+        }
+        if (this.registroinfo.value.correo != '') {
+          arr.push(this.registroinfo.value.celular)
+        }
         this.registrofinal = {
           //info personal
           nombre: this.registroinfo.value.nombre,
